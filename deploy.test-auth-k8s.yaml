@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-auth-k8s
+  namespace: default
+  labels:
+    app: test-auth-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-auth-k8s
+  template:
+    metadata:
+      labels:
+        app: test-auth-k8s
+    spec:
+      serviceAccountName: vault-auth
+      containers:
+      - name: test-auth-k8s
+        # image: dwdraju/alpine-curl-jq:latest
+        image: wbitt/network-multitool:alpine-extra
+        env:
+          - name: VAULT_ADDR
+            value: "http://192.168.65.254:8200"
+          - name: JWT
+            value: $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+          - name: KUBE_TOKEN
+            value: $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+        ports:
+        - containerPort: 80
