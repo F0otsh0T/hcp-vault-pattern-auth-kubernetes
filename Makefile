@@ -35,6 +35,7 @@ clean: #target ## Housekeeping.
 	kubectl delete -f vault-auth-k8s-clusterrolebinding.yaml
 	kubectl delete -f vault-auth-k8s-serviceaccount.yaml
 	kubectl delete -f vault-auth-k8s-sasecret.yaml
+	kubectl delete -f deploy.test-auth-k8s.yaml
 
 ################################
 # ALL
@@ -135,7 +136,7 @@ auth-kubernetes-role: #target ## Vault Kubernetes Role
 # K8S: DEPLOY TEST APPLICATION - AUTH KUBERNETES
 ################################
 .PHONY: deploy-app-auth-k8s
-deploy-app-auth-k8s:  #target ## Deploy Application Auth OIDC JWT
+deploy-app-auth-k8s: #target ## Test Pod Vault Auth Kubernetes
 	@echo "************************\n** DEPLOY APPLICATION **\n************************"
 	kubectl apply -f deploy.test-auth-k8s.yaml
 	sleep 5
