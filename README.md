@@ -511,6 +511,7 @@ Set your ```VAULT_ADDR``` and ```VAULT_TOKEN``` (or whatever auth method you are
 - https://developer.hashicorp.com/vault/docs/platform/k8s/injector
 - https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar
 - https://k3d.io/v5.2.2/faq/faq/#how-to-access-services-like-a-database-running-on-my-docker-host-machine
+- https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-external-vault
 
 ## Appendix
 
